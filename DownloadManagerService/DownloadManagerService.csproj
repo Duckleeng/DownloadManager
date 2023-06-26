@@ -61,7 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DownloadFileSystemWatcher.cs" />
+    <Compile Include="DownloadFileSystemWatcher.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DownloadManagerService.cs">
       <SubType>Component</SubType>
     </Compile>

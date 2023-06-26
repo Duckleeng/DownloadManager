@@ -9,27 +9,24 @@ using System.Security.Cryptography;
 
 namespace DownloadManagerService
 {
-    internal class DownloadFileSystemWatcher
+    internal class DownloadFileSystemWatcher : FileSystemWatcher
     {
         string[] fileHashes;
-        FileSystemWatcher watcher;
         const string logFile = @"C:\ProgramData\DownloadManager\DownloadManager.log";
-        public DownloadFileSystemWatcher(string path, string[] hashes)
+        public DownloadFileSystemWatcher(string path, string[] hashes) : base(path)
         {
             fileHashes = hashes;
 
-            watcher = new FileSystemWatcher(path);
-
-            watcher.NotifyFilter = NotifyFilters.LastWrite |
+            NotifyFilter = NotifyFilters.LastWrite |
                                    NotifyFilters.FileName;
 
-            watcher.Changed += OnCreated;
-            watcher.Created += OnCreated;
-            watcher.Renamed += OnCreated;
+            Changed += OnCreated;
+            Created += OnCreated;
+            Renamed += OnCreated;
 
-            watcher.Filter = "";
-            watcher.IncludeSubdirectories = true;
-            watcher.EnableRaisingEvents = true;
+            Filter = "";
+            IncludeSubdirectories = true;
+            EnableRaisingEvents = true;
         }
 
         private void OnCreated(object sender, FileSystemEventArgs e)
