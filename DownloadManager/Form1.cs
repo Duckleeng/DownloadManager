@@ -249,11 +249,11 @@ namespace DownloadManager
                     Service.InstallService(downloadService, assembly);
                     InstallServiceButton.Text = "Uninstall Service";
                     Service.Restart(downloadService);
-                    MessageBox.Show("Service installed succeessfully!");
+                    MessageBox.Show("Service installed successfully!");
                 }
                 else
                 {
-                    MessageBox.Show("Make sure the DownloadManagerService.exe is in the same directory as Download Manager before insatalling it!", "Warning");
+                    MessageBox.Show("Make sure the DownloadManagerService.exe is in the same directory as Download Manager before installing it!", "Warning");
                 }
                 
             }
