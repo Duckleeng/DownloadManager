@@ -408,8 +408,11 @@ namespace DownloadManager
             if (IsServiceInstalled(serviceName))
             {
                 ServiceController service = new ServiceController(serviceName);
-                service.Stop();
-                service.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(5));
+                if (service.Status == ServiceControllerStatus.Running)
+                {
+                    service.Stop();
+                    service.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(5));
+                }
             }
         }
     }
